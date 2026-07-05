@@ -102,8 +102,9 @@ with code_tab:
     if sc.get("images"):
         st.subheader("Experiment Output")
         for img_path in sc["images"]:
-            # Images are relative to project root, so we prepend '../' since pages are in subfolder
-            st.image(os.path.join("..", img_path))
+            # Images are now in the app's images folder, located relative to the app directory itself
+            base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            st.image(os.path.join(base_dir, "images", img_path))
             
     elif sc["output"] and sc["output"] != "No output found.":
         st.subheader("Experiment Output")
